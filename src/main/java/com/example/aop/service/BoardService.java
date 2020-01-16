@@ -9,14 +9,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class BoardService extends SuperPerformance<Board> {
+//@Service
+//public class BoardService extends SuperPerformance<Board> {
+//
+//    @Autowired
+//    private BoardRepository repository;
+//
+//    @Override
+//    public List<Board> findAll(){
+//        return repository.findAll();
+//    }
+//}
 
-    @Autowired
-    private BoardRepository repository;
-
-    @Override
-    public List<Board> findAll(){
-        return repository.findAll();
-    }
+public interface BoardService {
+    List<Board> getBoards();
 }
