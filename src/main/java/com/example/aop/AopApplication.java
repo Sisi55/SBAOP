@@ -1,5 +1,6 @@
 package com.example.aop;
 
+import com.example.aop.aspect.Performance;
 import com.example.aop.domain.Board;
 import com.example.aop.domain.BoardRepository;
 import com.example.aop.domain.User;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +20,7 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
+@EnableAspectJAutoProxy // 오토 프록싱
 public class AopApplication implements CommandLineRunner {
 
     @Autowired
@@ -46,11 +50,16 @@ public class AopApplication implements CommandLineRunner {
 
     @GetMapping("/users")
     public List<User> getUsers(){
-        return userService.getDataAll();
+        return userService.getUsers();//.getDataAll();
     }
 
     public static void main(String[] args) {
         SpringApplication.run(AopApplication.class, args);
+    }
+
+    @Bean
+    public Performance performance(){
+        return new Performance();
     }
 
 }
