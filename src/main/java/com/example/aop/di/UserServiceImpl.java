@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsers(){
         return repository.findAll();
     }
+
+    @Override
+    public void update(User user) throws Exception {
+        repository.save(user);
+    }
 }

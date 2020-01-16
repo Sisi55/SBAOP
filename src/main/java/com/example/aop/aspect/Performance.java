@@ -3,13 +3,19 @@ package com.example.aop.aspect;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class Performance {
 
+    @Pointcut("execution(* com.example.aop.service.BoardService.getBoards(..))")
+    public void getBoards(){}
+
+    @Pointcut("execution(* com.example.aop.service.UserService.getUsers(..))")
+    public void getUsers(){}
+
     // @Around 가 Target ?
-    @Around("execution(* com.example.aop.service.BoardService.getBoards(..)) || " +
-            "execution(* com.example.aop.service.UserService.getUsers(..))")
+    @Around("getBoards() || getUsers()")
     public Object calculatePerformanceTime(ProceedingJoinPoint proceedingJoinPoint){
         Object result = null;
         try{
