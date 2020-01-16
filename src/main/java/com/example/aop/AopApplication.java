@@ -41,7 +41,7 @@ public class AopApplication implements CommandLineRunner {
 
     @GetMapping("/boards")
     public List<Board> getBoards(){
-        return boardService.getDataAll();
+        return boardService.getBoards();//.getDataAll();
     }
 
     @GetMapping("/users")
